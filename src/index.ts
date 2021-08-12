@@ -1,5 +1,5 @@
 import { SheetService } from './services/sheetService'
-import { TaskService } from './services/taskService'
+import { AccountService } from './services/accountService'
 
 import { getDayFormat } from './utils'
 
@@ -10,6 +10,10 @@ global.createNewSpreadsheet = (): void => {
     SheetService.createNewFile(title)
 }
 
-global.postDaily = (): void => {
-    TaskService.postDaily()
+// global.postDaily = (): void => {
+//     TaskService.postDaily()
+// }
+
+global.doGet = (): void => {
+    AccountService.doGet()
 }
