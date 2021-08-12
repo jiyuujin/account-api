@@ -1,6 +1,6 @@
 import { SheetService } from './sheetService'
 
-import { SPREADSHEET_API } from '~/constants'
+import { SPREADSHEET_API, SHEET_NAME } from '~/constants'
 
 /**
  * 家計簿情報を取得する
