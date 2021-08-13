@@ -4,10 +4,9 @@ import { SPREADSHEET_API, SHEET_NAME } from '~/constants'
 
 /**
  * 家計簿情報を取得する
- * @param sheet Sheet オブジェクト
+ * @param rows 対象データ
  */
-const getAccountData = (sheet) => {
-    const rows = sheet.getDataRange().getValues()
+const getAccountData = (rows) => {
     const keys = rows.splice(0, 1)[0]
     return rows.map((row) => {
         const obj = {}
@@ -22,7 +21,8 @@ export class AccountService {
     static doGet() {
         const ss = SheetService.getSpreadsheet(SPREADSHEET_API)
         const sheet = SheetService.getSheetByName(ss, SHEET_NAME)
-        const data = getAccountData(sheet)
+        const rows = sheet.getDataRange().getValues()
+        const data = getAccountData(rows)
         const out = ContentService.createTextOutput(
             JSON.stringify({ data: data }, null, 2)
         )
