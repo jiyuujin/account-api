@@ -14,6 +14,6 @@ global.createNewSpreadsheet = (): void => {
 //     TaskService.postDaily()
 // }
 
-global.doGet = (): void => {
-    AccountService.doGet()
+global.doGet = (): any => {
+    return AccountService.doGet()
 }
