@@ -32,4 +32,26 @@ export class AccountService {
         ) // JSONPテキストをセット
         return out
     }
+
+    static doPost(result) {
+        const ss = SheetService.getSpreadsheet(SPREADSHEET_API)
+        const sheet = SheetService.getSheetByName(ss, SHEET_NAME)
+        const rows = sheet.getDataRange().getValues()
+        const data = getAccountData(rows)
+        if (result.hasOwnProperty('id')) {
+            // ID が存在する場合に、当該 ID の家計簿情報を更新する
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 1, result.id)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 2, result.date)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 3, result.cost)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 4, result.detail)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 5, result.amount)
+        } else {
+            // 追加する
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 1, data.length + 1)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 2, result.date)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 3, result.cost)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 4, result.detail)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 5, result.amount)
+        }
+    }
 }

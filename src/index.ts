@@ -17,3 +17,7 @@ global.createNewSpreadsheet = (): void => {
 global.doGet = (): any => {
     return AccountService.doGet()
 }
+
+global.doPost = (e: any): void => {
+    AccountService.doPost(JSON.parse(e.postData.getDataAsString()))
+}
