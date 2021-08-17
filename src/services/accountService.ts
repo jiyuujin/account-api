@@ -43,15 +43,17 @@ export class AccountService {
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 1, result.id)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 2, result.date)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 3, result.cost)
-            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 4, result.detail)
-            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 5, result.amount)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 4, result.type)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 5, result.detail)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 6, result.amount)
         } else {
             // 追加する
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 1, data.length + 1)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 2, result.date)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 3, result.cost)
-            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 4, result.detail)
-            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 5, result.amount)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 4, result.type)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 5, result.detail)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 6, result.amount)
         }
     }
 }
