@@ -39,21 +39,31 @@ export class AccountService {
         const rows = sheet.getDataRange().getValues()
         const data = getAccountData(rows)
         if (result.hasOwnProperty('id')) {
+            const oldAmount = SheetService.getCoordinateDataOnRange(sheet, 1 + result.id - 1, 6)
+            const newAmount = Number(result.type) === 0
+              ? Number(oldAmount) - Number(result.cost)
+              : Number(oldAmount) + Number(result.cost)
+
             // ID が存在する場合に、当該 ID の家計簿情報を更新する
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 1, result.id)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 2, result.date)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 3, result.cost)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 4, result.type)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 5, result.detail)
-            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 6, result.amount)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + result.id, 6, String(newAmount))
         } else {
+            const oldAmount = SheetService.getCoordinateDataOnRange(sheet, 1 + data.length + 1 - 1, 6)
+            const newAmount = Number(result.type) === 0
+              ? Number(oldAmount) - Number(result.cost)
+              : Number(oldAmount) + Number(result.cost)
+
             // 追加する
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 1, data.length + 1)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 2, result.date)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 3, result.cost)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 4, result.type)
             SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 5, result.detail)
-            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 6, result.amount)
+            SheetService.updateSpecifiedDataToRange(sheet, 1 + data.length + 1, 6, String(newAmount))
         }
     }
 }

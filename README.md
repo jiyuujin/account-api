@@ -19,7 +19,7 @@ curl -L <SPREADSHEET_API>
 Try to use the curl command
 
 ```bash
-curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{ "date": "2021-08-17", "cost": "100", "type": "1", "detail": "", "amount": "30000" }' <SPREADSHEET_API>
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{ "date": "2021-08-17", "cost": "100", "type": "1", "detail": "" }' <SPREADSHEET_API>
 ```
 
 #### Postman
